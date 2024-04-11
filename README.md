@@ -31,3 +31,121 @@ yarn add react-helmet-async
 ## react-helmet-async 설정
 
 - src/index.js
+
+```jsx
+...
+import { HelmetProvider } from 'react-helmet-async';
+...
+root.render(
+  <React.StrictMode>
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
+  </React.StrictMode>,
+);
+```
+
+- App.js
+
+```jsx
+import { Helmet } from 'react-helmet-async';
+
+const App = () => {
+  return (
+    <>
+      <Helmet>
+        <title>사이트 제목 변경 테스트</title>
+      </Helmet>
+    </>
+  );
+};
+export default App;
+```
+
+### 메세지, 다국어 처리
+
+- 의존성 : i18next, react-i18next
+- 의존성 설치
+
+```
+yarn add i18next react-i18next
+
+```
+
+- 언어파일 생성
+
+  - src/langs/ko, src/langs/en 폴더 생성
+  - 각 폴더별로 공통문구 - commons.js, 검증관련 문구 - validations.js, 에러문구 - error.js
+
+- 언어파일 통합 : 예) src/langs/ko/index.js
+
+```javascript
+import commons from './commons';
+import validations from './validations';
+import errors from './errors';
+
+const ko = { ...commons, ...validations, ...errors };
+
+export default ko;
+```
+
+- 설정 파일 구성 : src/i18n.js
+
+```javascript
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import ko from './langs/ko'; // == './langs/ko/index.js'
+import en from './langs/en';
+
+const resources = {
+  en: {
+    translation: en,
+  },
+  ko: {
+    translation: ko,
+  },
+};
+
+i18n.use(initReactI18next).init({
+  resources, // == resources: resources, 이름이 같으면 하나 생략해도 됨
+  lang: 'ko',
+});
+```
+
+- 설정반영 : src/index.js
+
+```javascript
+...
+import './i18n';
+...
+```
+
+- 적용하기 : useTranslation 훅 / react-i18next
+  - t : 언어 메세지 조회 함수
+  - i18n : 편의 기능 객체, changeLanguage(..) : 언어변경
+
+```jsx
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
+const App = () => {
+  const { t, i18n } = useTranslation();
+
+  return (
+    <>
+      <Helmet>
+        <title>사이트 제목 변경 테스트</title>
+      </Helmet>
+      <div>{t('아이디')}</div>
+      <div>{t('약관에_동의')}</div>
+      <div>{t('없는_문구')}</div>
+      <button type="button" onClick={() => i18n.changeLanguage('ko')}>
+        한국어
+      </button>
+      <button type="button" onClick={() => i18n.changeLanguage('en')}>
+        English
+      </button>
+    </>
+  );
+};
+export default App;
+```
