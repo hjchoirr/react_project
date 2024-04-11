@@ -13,7 +13,7 @@ const resources = {
 };
 
 i18n.use(initReactI18next).init({
-  resources: resources,
+  resources: resources, // == resources
   lng: navigator.language,  //lng: 'ko',
   //lng: 'en',
 });
