@@ -197,3 +197,11 @@ root.render(
 - commons/pages/Error.js
 - commons/components/ErrorDisplay.js
 
+# 스타일링
+
+## 공통스타일 : src/index.css
+
+- 공통폰트
+- 스타일 초기화
+- 기준 폰트 사이즈 : styles/fontsize.js / small, normal, medium, big, extraBig
+- 기준컬러 : Primary, Secondary, Success, Danger, Warning, Info, Light, Dark
