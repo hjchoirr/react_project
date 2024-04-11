@@ -1,19 +1,28 @@
-import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
-const App = () => {
-  const { t, i18n } = useTranslation();
+import { Routes, Route } from 'react-router-dom';
+import loadable from '@loadable/component';
+const MainLayout = loadable(() => import('./layouts/MainLayout'));
+const NotFound = loadable(() => import('./commons/pages/NotFound'));
 
-  return (
-    <>
-      <Helmet>
-        <title>사이트 제목 변경 테스트</title>
-      </Helmet>
-      <div>{t('아이디')}</div>
-      <div>{t('약관에_동의')}</div>
-      <div>{t('없는_문구')}</div>
-      <button type='button' onClick={() => i18n.changeLanguage('ko')}>한국어</button>
-      <button type='button' onClick={() => i18n.changeLanguage('en')}>English</button>
-    </>
-  );
+const Join = loadable(() => import('./member/pages/join'));
+const Login = loadable(() => import('./member/pages/login'));
+const Main = loadable(() => import('./main/pages/Main'));
+
+const App = () => {
+
+    return (
+        <Routes>
+            <Route path="/" element={<MainLayout />}>
+                <Route index element={<Main />} />   
+
+                <Route path="member">
+                    <Route path="join" element={<Join />} />
+                    <Route path="login" element={<Login />} />
+                </Route>
+                
+                <Route path="*" element={<NotFound />} />
+            </Route>
+        </Routes>
+    );
 };
+
 export default App;
