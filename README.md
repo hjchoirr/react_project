@@ -1,6 +1,6 @@
 # 설정
 
-- .prettierrc 설정
+## .prettierrc 설정
 
 ```json
 {
@@ -12,13 +12,22 @@
 }
 ```
 
-- 의존성 : 필요 라이브러리
-  - react-router-dom : 라우터
-  - sass, styled-components, classnames : 스타일링 목적
-  - immer : 불변성 관리
-  - react-icons : 리액트에서 제공하는 아이콘 라이브러리
-  - @loadable/componet : 지연로딩
+## 의존성
+
+> 필요 라이브러리
+
+- react-router-dom : 라우터
+- sass, styled-components, classnames : 스타일링 목적
+- immer : 불변성 관리
+- react-icons : 리액트에서 제공하는 아이콘 라이브러리
+- @loadable/componet : 지연로딩
+- react-helmet-async : head tag 내의 특정 태그 내용을 변경시
 
 ```
-yarn add react-router=dom sass styled-components classnames immer react-icons @loadable/component
+yarn add react-router-dom sass styled-components classnames immer react-icons @loadable/component
+yarn add react-helmet-async
 ```
+
+## react-helmet-async 설정
+
+- src/index.js
