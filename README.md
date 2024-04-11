@@ -108,7 +108,7 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources, // == resources: resources, 이름이 같으면 하나 생략해도 됨
-  lang: 'ko',
+  lng: 'ko',
 });
 ```
 
