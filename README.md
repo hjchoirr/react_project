@@ -158,7 +158,42 @@ export default App;
 
 # 라우팅 구성
 
+## 설정
+
+- src/index.js : BrouserRouter 컴포넌트로 감싸기
+
+```jsx
+...
+import { BrowserRouter } from 'react-router-dom';
+...
+root.render(
+  <React.StrictMode>
+    <HelmetProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </HelmetProvider>
+  </React.StrictMode>,
+);
+```
+
+## 메인페이지
+
+- /
+
 ## 회원
 
 - /member/join 회원가입
 - /member/login 로그인
+
+## 없는 페이지
+
+- - : 없는 페이지 - commons/page/NotFound.js
+
+## 에러페이지
+
+> class 형 컴포넌트 - componentDidCatch 사용
+
+- commons/pages/Error.js
+- commons/components/ErrorDisplay.js
+
