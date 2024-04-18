@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FaCheckSquare, FaRegCheckSquare } from 'react-icons/fa';
 import styled from 'styled-components';
 import { BigButton, ButtonGroup } from '../../commons/components/Buttons';
-import InputBox from '../../commons/components/inputBox';
+import InputBox from '../../commons/components/InputBox';
 import MessageBox from '../../commons/components/MessageBox';
 
 const FormBox = styled.form`
@@ -47,7 +47,7 @@ const JoinForm = ({ form, onSubmit, onChange, onToggle, onReset, errors }) => {
             value={form.email ?? ''}
             onChange={onChange}
           />
-          <MessageBox messages={errors.email} color="danger"/>
+          <MessageBox messages={errors.email} color="danger" />
         </dd>
       </dl>
       <dl>
@@ -59,7 +59,7 @@ const JoinForm = ({ form, onSubmit, onChange, onToggle, onReset, errors }) => {
             value={form.password ?? ''}
             onChange={onChange}
           />
-          <MessageBox messages={errors.password} color="danger"/>
+          <MessageBox messages={errors.password} color="danger" />
         </dd>
       </dl>
       <dl>
@@ -71,7 +71,7 @@ const JoinForm = ({ form, onSubmit, onChange, onToggle, onReset, errors }) => {
             value={form.confirmPassword ?? ''}
             onChange={onChange}
           />
-          <MessageBox messages={errors.confirmPassword} color="danger"/>
+          <MessageBox messages={errors.confirmPassword} color="danger" />
         </dd>
       </dl>
       <dl>
@@ -83,13 +83,13 @@ const JoinForm = ({ form, onSubmit, onChange, onToggle, onReset, errors }) => {
             value={form.name ?? ''}
             onChange={onChange}
           />
-          <MessageBox messages={errors.name} color="danger"/>
+          <MessageBox messages={errors.name} color="danger" />
         </dd>
       </dl>
       <div className="terms-agree" onClick={onToggle}>
-        { form.agree ? <FaCheckSquare /> : <FaRegCheckSquare/>}
+        {form.agree ? <FaCheckSquare /> : <FaRegCheckSquare />}
         {t('회원가입_약관에_동의합니다.')}
-        <MessageBox messages={errors.agree} color={"danger"}/>
+        <MessageBox messages={errors.agree} color={'danger'} />
       </div>
       <ButtonGroup width={450}>
         <BigButton type="reset" color="light" onClick={onReset}>

@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import JoinForm from '../components/joinForm';
+import JoinForm from '../components/JoinForm';
 
 const JoinContainer = () => {
   const [form, setForm] = useState({
@@ -40,8 +40,10 @@ const JoinContainer = () => {
       };
       for (const [field, msg] of Object.entries(requiredFields)) {
         // !form[field] - null, undefined, '' 체크, !form[field].trim() - '    '
-        //if (!form[field] || (form[field] && !form[field].trim())) {
-        if (!form[field] || form[field]) {
+        if (
+          !form[field] ||
+          (typeof form[field] === 'string' && !form[field].trim())
+        ) {
           _errors[field] = _errors[field] || [];
           _errors[field].push(msg);
           hasErrors = true;

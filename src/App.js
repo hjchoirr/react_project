@@ -3,9 +3,13 @@ import loadable from '@loadable/component';
 const MainLayout = loadable(() => import('./layouts/MainLayout'));
 const NotFound = loadable(() => import('./commons/pages/NotFound'));
 
+
 const Join = loadable(() => import('./member/pages/join'));
 const Login = loadable(() => import('./member/pages/login'));
 const Main = loadable(() => import('./main/pages/Main'));
+
+const MypageMain = loadable(() => import('./mypage/pages/MypageMain'));
+
 
 const App = () => {
 
@@ -19,6 +23,9 @@ const App = () => {
                     <Route path="login" element={<Login />} />
                 </Route>
                 
+                <Route path="mypage">
+                    <Route index element={<MypageMain />} />
+                </Route>
                 <Route path="*" element={<NotFound />} />
             </Route>
         </Routes>
